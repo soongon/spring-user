@@ -3,4 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.springuser.repository.UserRepository">
+    <select id="selectAllUsers" resultType="com.example.springuser.model.User">
+        select  user_id as userId,
+                name    as name,
+                age     as age
+        from    spring_user
+    </select>
+    <insert id="insertUser" parameterType="com.example.springuser.model.User">
+        INSERT INTO SPRING_USER VALUES(#{userId}, #{name}, #{age});
+    </insert>
+    <select id="selectUserByUserId"
+            parameterType="int"
+            resultType="com.example.springuser.model.User">
+        select  user_id as userId,
+                name    as name,
+                age     as age
+        from    spring_user
+        where   user_id = #{userId}
+    </select>
 </mapper>
